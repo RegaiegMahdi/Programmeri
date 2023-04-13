@@ -1,10 +1,12 @@
-
 <?php
-include "../Controller/ReclamationC.php";
-$ReclamationC = new ReclamationC();
-$list = $ReclamationC->listReclamation();
-?>
+$error = "";
+var_dump($_POST);
+include '../Controller/postC.php';
+$postC = new postC();
 
+$posts = $postC->getPost();
+$htmlContent = file_get_contents('formulaire.html');
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -20,7 +22,7 @@ $list = $ReclamationC->listReclamation();
             <aside>
                 <div class="top">
                     <div class="logo">
-                        <img src="C:/xampp/htdocs/projet/image/logo.png">
+                        <img src="C:\xampp\htdocs\scriptphp\projet\image\logo.png">
                         <h2>SW<span class="title">EAT</span> SOCIETY</h2>
                     </div>
                     <div class="close" id="close-btn">
@@ -77,49 +79,17 @@ $list = $ReclamationC->listReclamation();
                             <span class="material-icons-sharp" >dark_mode</span>
                         </div>
                     </div>
-                </div>
-                <section class="List">
-		<div class="Tablelist">
-			<table class="tableview">
-				<tr class="TitleTab">
-					<th class="styleth">Id Reclamation</th>
-					<th class="styleth">Id Client</th>
-					<th class="styleth">Email client</th>
-					<th class="styleth">Sujet de la réclamation</th>
-					<th class="styleth">Message de la réclamation</th>
-					<th class="styleth">statut de la reclamation</th>
-					<th><a class="toggle-edit"><i class="edit-del-icon uil uil-edit"></i></a></th>
-					<th><a class="toggle-add"><i class="edit-del-icon uil uil-book-medical"></i></a></th>
-				</tr>
-				<?php
-        foreach ($list as $Reclamation) 
-        {
-        ?>
-					<tr>
-                        <td class="styleth"><?= $Reclamation['Id_R']; ?></td>
-                        <td class="styleth"><?= $Reclamation['id_Client']; ?></td>
-                        <td class="styleth"><?= $Reclamation['Email']; ?></td>
-                        <td class="styleth"><?= $Reclamation['Sujet_R']; ?></td>
-                        <td class="styleth"><?= $Reclamation['Message_R']; ?></td>
-                        <td class="styleth"><?= $Reclamation['Statut_R']; ?></td>
-						<td>
-							
-							<!--<form method="POST" action="updateReclamation.php">
-							<a href="updateReclamation.php?Id_L="><i class="edit-del-icon uil uil-edit"></i></a>
-							</form>-->
-						</td>
-						<td>
-							<a href="deleteReclamation.php?Id_L=<?php echo $Reclamation['Id_R']; ?>"><i class="edit-del-icon uil uil-trash-alt"></i></a>
-						</td>
-					</tr>
-                    <?php
-        }
-        ?>	
-			</table>
-		</div>
-		
-	</section>
-                </right>
+         </div>
+  <div>
+    <?php 
+  echo $htmlContent;
+  ?>
+	</div>
+</div>
+
+        
+
+   </right>
         </div>
         <script src="./back-office.js"></script>
     </body>

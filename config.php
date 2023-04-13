@@ -11,7 +11,7 @@
         {
           self::$pdo = new PDO
           (
-            'mysql:host=localhost;dbname=projet',
+            'mysql:host=localhost;dbname=sweat_society',
             'root',
             '',
             [
