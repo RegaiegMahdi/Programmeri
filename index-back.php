@@ -1,10 +1,8 @@
-
 <?php
-include "../Controller/ReclamationC.php";
-$ReclamationC = new ReclamationC();
-$list = $ReclamationC->listReclamation();
+include "../Controller/CoursC.php";
+$CoursC = new CoursC();
+$list = $CoursC->listCours();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -20,7 +18,7 @@ $list = $ReclamationC->listReclamation();
             <aside>
                 <div class="top">
                     <div class="logo">
-                        <img src="C:/xampp/htdocs/projet/image/logo.png">
+                        <img src="C:\xampp\htdocs\scriptphp\projet\image\logo.png">
                         <h2>SW<span class="title">EAT</span> SOCIETY</h2>
                     </div>
                     <div class="close" id="close-btn">
@@ -77,49 +75,115 @@ $list = $ReclamationC->listReclamation();
                             <span class="material-icons-sharp" >dark_mode</span>
                         </div>
                     </div>
-                </div>
-                <section class="List">
-		<div class="Tablelist">
-			<table class="tableview">
-				<tr class="TitleTab">
-					<th class="styleth">Id Reclamation</th>
-					<th class="styleth">Id Client</th>
-					<th class="styleth">Email client</th>
-					<th class="styleth">Sujet de la réclamation</th>
-					<th class="styleth">Message de la réclamation</th>
-					<th class="styleth">statut de la reclamation</th>
-					<th><a class="toggle-edit"><i class="edit-del-icon uil uil-edit"></i></a></th>
-					<th><a class="toggle-add"><i class="edit-del-icon uil uil-book-medical"></i></a></th>
-				</tr>
-				<?php
-        foreach ($list as $Reclamation) 
-        {
-        ?>
-					<tr>
-                        <td class="styleth"><?= $Reclamation['Id_R']; ?></td>
-                        <td class="styleth"><?= $Reclamation['id_Client']; ?></td>
-                        <td class="styleth"><?= $Reclamation['Email']; ?></td>
-                        <td class="styleth"><?= $Reclamation['Sujet_R']; ?></td>
-                        <td class="styleth"><?= $Reclamation['Message_R']; ?></td>
-                        <td class="styleth"><?= $Reclamation['Statut_R']; ?></td>
-						<td>
-							
-							<!--<form method="POST" action="updateReclamation.php">
-							<a href="updateReclamation.php?Id_L="><i class="edit-del-icon uil uil-edit"></i></a>
-							</form>-->
-						</td>
-						<td>
-							<a href="deleteReclamation.php?Id_L=<?php echo $Reclamation['Id_R']; ?>"><i class="edit-del-icon uil uil-trash-alt"></i></a>
-						</td>
-					</tr>
-                    <?php
-        }
-        ?>	
-			</table>
-		</div>
-		
-	</section>
-                </right>
+                    
+         </div>
+  <div>
+
+<section class="List">
+
+    <div class="InputlistAdd slide-in-right">
+
+        <form  class="form-group" method="POST" action="addCours.php">
+            
+            <ul>
+                <li>
+                    <h3> Ajouter</h3>
+                </li>
+                <li>
+                    <label for="idClientadd">
+                        <label>
+                            <input type="number" name="idClientadd" placeholder="entrer votre ID" id="idClientadd" required
+                            minlength="1" max="100" size="10">
+                </li>
+                <li>
+                    <label for="numSalleadd">
+                        <label>
+                            <select name="numSalleadd">
+                                <option value="1">Salle 1</option>
+                                <option value="2">Salle 2</option>
+                                <option value="3">Salle 3</option>
+</select>
+                </li>
+                <li>
+                <label for="nomCoachadd">
+                        <label>
+                            <select name="nomCoachadd">
+                                <option value="Mahdi">Mahdi</option>
+                                <option value="Youssef">Youssef</option>
+                                <option value="Chareffedine">Chareffedine</option>
+                                </select>
+                </li>
+                <li>
+                <label for="typeadd">
+                        <label>
+                            <select name="typeadd">
+                                <option value="Boxe">Boxe</option>
+                                <option value="Body Combat">Body Combat</option>
+                                <option value="Zumba">Zumba</option>
+                                </select>
+                </li>
+
+                
+                
+            </ul>
+            <input type="submit" name="Add" value="Submit" class="btn mt-4">
+        </form>
+
+    </div>
+    <div class="InputlistEdit slide-out-right">
+
+        <form  class="form-group" method="POST" action="updateCours.php">
+            
+            <ul>
+                <li>
+                    <h3>Modifier</h3>
+                    <label for="idClientup">
+                        <label>
+                            <input type="number" name="idClientup" placeholder="entrer votre ID" id="idClientadd" 
+                            minlength="1" maxlength="6" size="10">
+                </li>
+                <li>
+                    <label for="numSalleup">
+                        <label>
+                            <select name="numSalleup">
+                                <option value="1">Salle 1</option>
+                                <option value="2">Salle 2</option>
+                                <option value="3">Salle 3</option>
+</select>
+                </li>
+                <li>
+                <label for="nomCoachup">
+                        <label>
+                            <select name="nomCoachup">
+                                <option value="Mahdi">Mahdi</option>
+                                <option value="Youssef">Youssef</option>
+                                <option value="Chareffedine">Chareffedine</option>
+                                </select>
+                </li>
+                <li>
+                <label for="typeup">
+                        <label>
+                            <select name="typeup">
+                                <option value="Boxe">Boxe</option>
+                                <option value="Body Combat">Body Combat</option>
+                                <option value="Zumba">Zumba</option>
+                                </select>
+                </li>
+            <input type="submit" name="Update" value="Submit" class="btn mt-4">
+          
+
+        </form>
+        
+    </div>
+</section>
+
+
+
+</div>
+
+        
+
+   </right>
         </div>
         <script src="./back-office.js"></script>
     </body>
