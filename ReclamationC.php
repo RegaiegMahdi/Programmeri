@@ -29,11 +29,11 @@ class ReclamationC
             
             
             $pdo = config::getConnexion();
-            $sql = "INSERT INTO `Reclamation`(`Id_R`, `id_Client`, `Email`, `Sujet_R`, `Message_R`, `Statut_R`) 
-            VALUES (:idR, :idc, :email, :sujetr, :msg, :statutr)";
+            $sql = "INSERT INTO Reclamation
+            VALUES (NULL, :idc, :email, :sujetr, :msg, :statutr)";
             $query = $pdo->prepare($sql);
             $query->execute([
-                "idR" => $Reclamation->getIdReclamation(),
+                
                 "idc" => $Reclamation->getIdClient(),
                 "email" => $Reclamation->getEmail(),
                 "sujetr" => $Reclamation->getSujetReclamation(),

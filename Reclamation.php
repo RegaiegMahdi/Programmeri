@@ -3,7 +3,7 @@
 class Reclamation
 {
     // TODO Partie Déclaration Varialbles
-    private int $IdReclamation;
+    private ?int $IdReclamation= null;
     private int $IdClient;
     private string $Email;
     private string $SujetReclamation;

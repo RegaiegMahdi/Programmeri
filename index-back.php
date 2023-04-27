@@ -4,6 +4,19 @@ include "../Controller/ReclamationC.php";
 $ReclamationC = new ReclamationC();
 $list = $ReclamationC->listReclamation();
 ?>
+<?php
+
+var_dump($_POST);
+// Include the controller and reponse class
+include '../Controller/reponseC.php';
+
+// Create an instance of the controller
+$reponseC = new reponseC();
+
+// Get all reponses
+$reponses = $reponseC->getReponses();
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +33,7 @@ $list = $ReclamationC->listReclamation();
             <aside>
                 <div class="top">
                     <div class="logo">
-                        <img src="C:/xampp/htdocs/projet/image/logo.png">
+                        <img src="logo.png">
                         <h2>SW<span class="title">EAT</span> SOCIETY</h2>
                     </div>
                     <div class="close" id="close-btn">
@@ -119,6 +132,69 @@ $list = $ReclamationC->listReclamation();
 		</div>
 		
 	</section>
+    <!DOCTYPE html>
+<html>
+<head>
+	<title>Reponse CRUD</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<h1>Reponse CRUD</h1>
+	<div class="container">
+		<h2>Add a Reponse</h2>
+		<form action="addReponse.php" method="POST">
+        <table border="1">
+		<tr>
+			<td><label for="contenu">Contenu:</label></td>
+			<td><textarea name="contenu" required></textarea></td>
+		</tr>
+		<tr>
+			<td><label for="statut">Statut:</label></td>
+			<td><input type="text" name="statut" required></td>
+		</tr>
+		<tr>
+			<td colspan="2"><input type="submit" value="Add Reponse"></td>
+		</tr>
+	</table>
+</form>
+	</div>
+    <h1>List of Reponses</h1>
+    <div class="container">
+        <?php if (count($reponses) > 0): ?>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Contenu</th>
+                    <th>Statut</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+                <?php foreach ($reponses as $reponse): ?>
+                    <tr>
+                        <td><?= $reponse->getId_rep() ?></td>
+                        <td><?= $reponse->getContenu() ?></td>
+                        <td><?= $reponse->getStatut() ?></td>
+
+                        <td align="center">
+                            <form method="POST" action="updatereponse.php">
+                                <input type="hidden" name="id" value="<?= $reponse->getId_rep() ?>">
+                                <input type="submit" name="update" value="Update">
+                            </form>
+                        </td>
+
+                        <td>
+                            <a href="deletereponse.php?id=<?php echo $reponse->getId_rep(); ?>">Delete</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        <?php else: ?>
+            <p>No reponses found.</p>
+        <?php endif; ?>
+    </div>
+</body>
                 </right>
         </div>
         <script src="./back-office.js"></script>
