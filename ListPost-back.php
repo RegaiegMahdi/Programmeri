@@ -1,39 +1,19 @@
-
 <?php
+
+
+
+var_dump($_POST);
+// Include the controller and prost class
 include '../Controller/postC.php';
 
-$error = "";
-
-// create product
-$post = null;
-
-// create an instance of the controller
+// Create an instance of the controller
 $postC = new postC();
-if (
-    isset($_POST["id"]) &&
-    isset($_POST["contenu"]) &&
-    isset($_POST["sujet"]) &&
-    isset($_FILES["image"])
-) {
-    if (
-        !empty($_POST["id"]) &&
-        !empty($_POST['contenu']) &&
-        !empty($_POST["sujet"]) &&
-        !empty($_FILES["image"])
-    ) {
-        $post = new post(
-            $_POST['id'],
-            $_POST['contenu'],
-            $_POST['sujet'],
-            $_FILES['image']['name']
-        );
-        $postC->updatePost($post, $_POST["id"]);
-        header('Location:ListPost.php');
-    } else {
-        $error = "Missing information";
-    }
-}
+
+// Get all products
+$posts = $postC->getPost();
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -42,14 +22,14 @@ if (
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <title>SWEAT SOCIETY</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
-        <link rel="stylesheet" href="updatePost-back.css">
+        <link rel="stylesheet" href="style_back_listPost.css">
     </head>
     <body>
         <div class="container">
             <aside>
                 <div class="top">
                     <div class="logo">
-                        <img src="C:\xampp\htdocs\scriptphp\projet\image\logo.png">
+                        <img src=".image/logo.png">
                         <h2>SW<span class="title">EAT</span> SOCIETY</h2>
                     </div>
                     <div class="close" id="close-btn">
@@ -107,77 +87,42 @@ if (
                         </div>
                     </div>
          </div>
-  <div>
-  <hr>
-    <div id="error">
-    <?php echo $error; ?>
+
+         <section id="blog">
+         <?php if (count($posts) > 0): ?>
+            <?php foreach ($posts as $post): ?>
+            <div class="blog-heading">
+             
+            </div>
+
+            <div class="blog-container">
+                 <!--box1-->
+                 <div class="blog-box">
+                <!--img-->
+                <div class="blog-img">
+                <td><img class="product-image" src="uploads/<?= basename($post->getImage()) ?>" alt="<?= $post->getId() ?>">
+                </div>
+                <!--text-->
+                <div class="blog-text">
+                    <span><?= $post->getSujet() ?></span>
+                    <p><?= $post->getContenu() ?></p>
+                    <a href="deletepost.php?id=<?php echo $post->getId(); ?>">Delete</a>
+                    <td align="center">
+                        <form method="POST" action="updatepost.php">
+						
+    <input type="hidden" name="id" value="<?= $post->getId() ?>">
+    <input type="submit" name="update" value="Update">
+                </div>
+                 </div>
+            </div>
+            <?php endforeach; ?>
+         </section>
+  
 </div>
 
-<?php
-if (isset($_POST['id'])) {
-    $post = $postC->showPost($_POST['id']);
-
-?>
- <div class="wrapper">
- <h1>Modifier Un Post</h1>
-<form action="updatepost.php" method="POST" enctype="multipart/form-data">
-        <table border="1" align="center">
-            <tr>
-                <td>
-                    <label for="id">Id Post:
-                    </label>
-                </td>
-                <td><input type="text" name="id" id="id" value="<?php echo $post['id']; ?>" readonly></td>
-</tr>
-<tr>
-<td>
-<label for="contenu">Contenu Post:
-</label>
-</td>
-<td><input type="text" name="contenu" id="contenu" value="<?php echo $post['contenu']; ?>"></td>
-</tr>
-<tr>
-<td>
-<label for="sujet">Sujet:
-</label>
-</td>
-<td><input type="text" name="sujet" id="sujet" value="<?php echo $post['sujet']; ?>"></td>
-</tr>
-
-<tr>
-<td>
-<label for="image">Image:
-</label>
-</td>
-<td><input type="file" name="image" id="image"></td>
-</tr>
-<tr>
-<td colspan="2" align="center">
-<button>Modifier</button>
-</td>
-</tr>
-</table>
-</form>
-
-<?php
-}
-?>
-	</div>
-</div>
-<?php
-
-?>
-
-
-
-
-
-        
-
-   </right>
-        </div>
         <script src="./back-office.js"></script>
     </body>
+
 </html>
-
-
+   
+         <?php endif; ?>

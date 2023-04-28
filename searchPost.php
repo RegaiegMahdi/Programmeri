@@ -1,53 +1,81 @@
 <?php
+
+
+
+var_dump($_POST);
+// Include the controller and prost class
 include '../Controller/postC.php';
-$error = "";
+
+// Create an instance of the controller
 $postC = new postC();
 
-if (isset($_GET['sujet']) && !empty($_GET['sujet'])) {
-    $list = $postC->showpubli($_GET['sujet']);
-} else {
-    $list = $postC->listPost();
-}
+// Get all products
+$posts = $postC->getPost();
 
-if (empty($list)) {
-    $error = "No post found";
-}
 ?>
 
-<html>
-<head></head>
-<body>
-    <div>
-        <form action="" method="GET">
-            <input type="text" name="sujet" id="label" placeholder="donner le sujet du post">
-            <input type="submit" value="Search">
-        </form>
-    </div>
-    <center>
-        <h1>Posts</h1>
-    </center>
-    <?php if (!empty($error)): ?>
-        <p><?= $error ?></p>
-    <?php else: ?>
-        <table border="1" align="center" width="70%">
-            <tr>
-                <th>Id post</th>
-                <th>Contenu</th>
-                <th>Sujet</th>
-                <th>image</th>
-            </tr>
-            <?php foreach ($list as $post): ?>
-                <tr>
-                    <td><?= $post['id']; ?></td>
-                    <td><?= $post['contenu']; ?></td>
-                    <td><?= $post['sujet']; ?></td>
-                    <td><img class="product-image" src="uploads/<?= basename($post['image']) ?>" alt="<?= $post['sujet'] ?>" width="80"></td>
-                    
-                </tr>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>SWEAT SOCIETY</title>
+        <!--navbar icon-->
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="design-searchPost-front.css">
+        <script src="./script.js"></script>
+    </head>
+    <body>
+       <header class="header">
+        <a href="" class="logo"><img src="C:/xampp/htdocs/scriptphp/projet/view/image/logo.png" width="50px"></a>
+        <nav class="navbar">
+            <a href="#Home" style="--i:1;" class="active">Home</a>
+            <a href="#About"style="--i:2;">About</a>
+            <a href="searchPost.php"style="--i:3;">Post</a>
+            <a href="#Compte"style="--i:4;">Compte</a>
+            
+        </nav>
+        <div class="bx bx-moon" id="dark-icon"></div>
+       </header> 
+       <!--post section-->
+       <section class="home" id="Home"> 
+        <div class="offre-container">
+           <div class="overlay"><
+        
+     
+        <?php if (count($posts) > 0): ?>
+            <?php foreach ($posts as $post): ?>
+            <div class="blog-heading">
+                
+            </div>
+
+            <div class="blog-container">
+                 <!--box1-->
+                 <div class="blog-box">
+                <!--img-->
+                <div class="blog-img">
+                <td><img class="product-image" src="uploads/<?= basename($post->getImage()) ?>" alt="<?= $post->getId() ?>">
+                </div>
+                <!--text-->
+                <div class="blog-text">
+                    <span><?= $post->getSujet() ?></span>
+                    <p><?= $post->getContenu() ?></p>
+                    <a href="add_commentaire.php">Commenter</a>
+                </div>
+                 </div>
+            </div>
             <?php endforeach; ?>
-        </table>
-    <?php endif; ?>
-</body>
+            </div>
+            </div>
+    </section>
+
+ 
+
+
+  
+
+    </body>
 </html>
 
-
+<?php endif; ?>

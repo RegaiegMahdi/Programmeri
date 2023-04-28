@@ -1,12 +1,4 @@
-<?php
-$error = "";
-var_dump($_POST);
-include '../Controller/postC.php';
-$postC = new postC();
 
-$posts = $postC->getPost();
-$htmlContent = file_get_contents('formulaire.html');
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -80,12 +72,23 @@ $htmlContent = file_get_contents('formulaire.html');
                         </div>
                     </div>
          </div>
-  <div>
-    <?php 
-  echo $htmlContent;
-  ?>
+  <div class="wrapper">
+  <form action="add_post.php">
+    <button>Ajouter Post</button>
+</form>
+<form action="ListPost-back.php">
+    <button>Modifier ou Supprimer des Posts</button>
+</form>
+
 	</div>
 </div>
+<?php
+
+?>
+
+
+
+
 
         
 
