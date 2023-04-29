@@ -13,6 +13,16 @@ class Reservation
         $this->idClient = $idClient;
           
     }
+
+    public function getdatee()
+    {
+        return $this->datee;
+    }
+
+    public function setdatee(int $datee)
+    {
+        $this->datee = $datee;
+    }
     public function getidClient()
     {
         return $this->idClient;
@@ -23,13 +33,4 @@ class Reservation
         $this->idClient = $idClient;
     }
 
-    public function getdatee()
-    {
-        return $this->datee;
-    }
-
-    public function setdatee(DateTime $datee)
-    {
-        $this->datee = $datee;
-    }
 }

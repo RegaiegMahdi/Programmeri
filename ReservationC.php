@@ -40,7 +40,7 @@ class ReservationC
             echo "Ajout Echouer: " . $e->getMessage();
         }
     }
-    public function deleteReservation(DateTime $datee)
+    public function deleteReservation(int $datee)
     {
         try {
 
@@ -74,8 +74,7 @@ class ReservationC
             $pdo = config::getConnexion();
             $sql = "UPDATE `reservation` SET  `id_Client`=:idc  WHERE datee=:idr";
             $query = $pdo->prepare($sql);
-            $query->execute([
-                
+            $query->execute([ 
                 "idc" => $Reservation->getidClient(),
                 "idr" => $id
             ]);

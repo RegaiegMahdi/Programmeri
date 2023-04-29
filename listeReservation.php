@@ -3,32 +3,48 @@ include "../Controller/ReservationC.php";
 $ReservationC = new ReservationC();
 $list = $ReservationC->listeReservation();
 ?>
-
 <!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title> programmeri </title>
- 
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>SWEAT SOCIETY</title>
+        <!--navbar icon-->
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="style2.css">
+        <script src="C:\xampp\htdocs\scriptphp\projet\view\script.js"></script>
+    </head>
+    <body>
+       <header class="header">
+        <a href="" class="logo"><img src="C:/xampp/htdocs/scriptphp/projet/view/image/logo.png" width="50px"></a>
+        <nav class="navbar">
+            <a href="#Home" style="--i:1;" class="active">Home</a>
+            <a href="#About"style="--i:2;">About</a>
+            <a href="searchPost.php"style="--i:3;">Post</a>
+            <a href="#Compte"style="--i:4;">Compte</a>
+            
+        </nav>
+        <div class="bx bx-moon" id="dark-icon"></div>
+       </header> 
+       <!--home section-->
+       <section class="home" id="Home">
+        <div class="offre-container">
+          <div class="overlay"></div>
 
-</head>
-<body>
-
-	<section class="List">
-		<div class="Tablelist">
-			<table class="tableview">
-				<tr class="TitleTab">
-
-                <th class="styleth">Date</th>
-<th>
-    <th>
-					<th class="styleth">Id Client</th>
-					
-					
-					<th><a class="toggle-edit"><i class="edit-del-icon uil uil-edit"></i></a></th>
-					<th><a class="toggle-add"><i class="edit-del-icon uil uil-book-medical"></i></a></th>
-				</tr>
-				<?php
+          
+        </div>
+        <div class="Tablelist">
+        <table class="tableview">
+            <tr class="TitleTab">
+                
+                <th class="styleth">num Salle</th>
+                <th class="styleth">votre numero</th>
+                
+                <th><a class="toggle-edit"><i class="edit-del-icon uil uil-edit"></i></a></th>
+                <th><a class="toggle-add"><i class="edit-del-icon uil uil-book-medical"></i></a></th>
+            </tr>
+            <?php
         foreach ($list as $Reservation) 
         {
         ?>
@@ -53,65 +69,7 @@ $list = $ReservationC->listeReservation();
         }
         ?>	
 			</table>
-		</div>
-		<form  class="form-group" method="POST" action="addReservation.php">
-            
-<ul>
-    <li>
-        <h3> Ajouter</h3>
-    </li>
-    <li>
-    <tr>
-                <td>
-                    <label for="dateeadd">Date :
-                    </label>
-                </td>
-                <td>
-                    <input type="date" name="dateeadd" placeholder="entrer date" id="dateeadd"  >
-                </td>
-                </li>
-                <li>
-                    <label for="idClientadd">
-                        <label>
-                            <input type="number" name="idClientadd" placeholder="entrer votre ID" id="idClientadd" 
-                            minlength="1" max="10" size="10">
-                </li>
-                <li>
-                <input type="submit" name="Add" value="Submit" class="btn mt-4">
-            </tr>
-          
-
-		</div>
-						
-        <div class="InputlistEdit slide-out-right">
-
-        <form  class="form-group" method="POST" action="updateReservation.php">
-            
-            <ul>
-                <li>
-                    <h3>Modifier</h3>
-
-                <td>
-                    <label for="dateeup">Date :
-                    </label>
-                </td>
-                <td>
-                    <input type="date" name="dateeup" placeholder="entrer date" id="dateeadd"  >
-                </td>
-                <label for="idClientup">
-                        <label>
-                            <input type="number" name="idClientup" placeholder="entrer votre ID" id="idClientup" 
-                            minlength="1" maxlength="10" size="10">
-                </li>
-                <li>
-                </li>
-                <li>
-                </li>
-            <input type="submit" name="Update" value="Submit" class="btn mt-4">
-        </form>
-
-    </div>
-</section>
+	
 
 
 

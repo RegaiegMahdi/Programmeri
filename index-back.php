@@ -137,6 +137,8 @@ $list = $CoursC->listCours();
             <ul>
                 <li>
                     <h3>Modifier</h3>
+                    </li>
+                <li>
                     <label for="idClientup">
                         <label>
                             <input type="number" name="idClientup" placeholder="entrer votre ID" id="idClientadd" 
@@ -176,7 +178,74 @@ $list = $CoursC->listCours();
         
     </div>
 </section>
+<section class="List">
 
+<div class="InputlistAdd slide-in-right">
+    
+    <form  class="form-group" method="POST" action="addReservation.php">
+        
+<ul>
+<li>
+    <h1>Gestion Reservation</h1>
+
+
+    <h3> Ajouter</h3>
+
+<br>
+<br>
+            <td>
+            <td>
+                   
+                    <label for="dateeadd"> 
+                        <label>
+                            <select name="dateeadd">
+                                <option value="1">Salle 1</option>
+                                <option value="2">Salle 2</option>
+                                <option value="3">Salle 3</option>
+</select>
+<br>
+<br>
+            <li>
+                <label for="idClientadd">
+                    <label>
+                        <input type="number" name="idClientadd" placeholder="entrer votre ID" id="idClientadd" required
+                        minlength="9999999" max="10000000" size="10000000">
+            </li>
+            <li>
+<br>
+
+            <input type="submit" name="Add" value="Submit" class="btn mt-4">
+        </tr>
+      
+
+    </div>
+                    
+    <div class="InputlistEdit slide-out-right">
+
+<form  class="form-group" method="POST" action="updateReservation.php">
+    
+    <ul>
+        <li>
+            <h3>Modifier</h3>
+            </li>
+   
+        <li>
+            <label for="dateeup">
+                <label>
+                    <select name="dateeup">
+                        <option value="1">Salle 1</option>
+                        <option value="2">Salle 2</option>
+                        <option value="3">Salle 3</option>
+</select>
+<li>
+            <label for="idClientup">
+                <label>
+                    <input type="number" name="idClientup" placeholder="entrer votre ID" id="idClientadd" 
+                    minlength="1" maxlength="6" size="1">
+        </li>
+    <input type="submit" name="Update" value="Submit" class="btn mt-4">
+  
+</section>
 
 
 </div>
