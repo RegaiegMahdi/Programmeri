@@ -3,6 +3,7 @@ require_once '../config.php';
 
 class ProduitC
 {
+    
     public function listproduit() //affichage de produit
     {
         $sql = "SELECT * FROM produit";

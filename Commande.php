@@ -18,9 +18,10 @@ class Commande
         $this->prix_tot = $prix_tot;
     }
     public function setid($id_commande)
-    {
-        $this->id_commande = $id_commande;
-    }
+{
+    $this->id_commande = $id_commande;
+}
+
     public function getid()
     {
         return $this->id_commande;

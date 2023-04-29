@@ -31,7 +31,6 @@ $list = $commandeC->listcommande();
                 <td><?= $commande['nb_prod']; ?></td>
                 <td><?= $commande['date_passage_commande']; ?></td>
                 <td><?= $commande['date_recue_commande']; ?></td>
-                <td><?= $commande['id_p']; ?></td>
                 <td><?= $commande['prix_tot']; ?></td>
                 <td align="center">
                     <form method="POST" action="updatecommande.php">

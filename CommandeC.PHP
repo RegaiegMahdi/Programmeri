@@ -46,16 +46,16 @@ class CommandeC
         $query = $db->prepare($sql);
         $query->execute([
             ':nb_prod' => $Commande->getHP(),
-            ':date_passage_commande' => $Commande->getManufacturer(), 
+            ':date_passage_commande' => $Commande->getManufacturer(),
             ':date_recue_commande' => $Commande->getMaxSpeed(),
             ':id_p' => $Commande->getidp(),
             ':prix_tot' => $Commande->getprixtot(),
-                      
         ]);
     } catch (Exception $e) {
         echo 'Error: ' . $e->getMessage();
     }
 }
+
 
 
     function showcommande($id_commande)

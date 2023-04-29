@@ -14,7 +14,7 @@ if (isset($_POST["nom_produit"]) && isset($_POST["prix_produit"])) {
     $produitC->addproduit($produit);
     header('Location:listproduit.php');
 } else {
-    $error = "Missing information";
+    $error = "";
 }
 ?>
 
@@ -26,6 +26,15 @@ if (isset($_POST["nom_produit"]) && isset($_POST["prix_produit"])) {
     <title>Add Product</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style>
+
+.back-btn-container {
+        width: 150px;
+        margin-bottom: 20px;
+    }
+    .back-btn {
+        font-size: 0.8rem;
+        width: 100%;
+    }
         body {
             background-color: #f8f9fa;
         }
@@ -35,7 +44,7 @@ if (isset($_POST["nom_produit"]) && isset($_POST["prix_produit"])) {
             background-color: #fff;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 40px;
+            padding: 0px;
         }
 
         .form-control:focus {
@@ -44,11 +53,15 @@ if (isset($_POST["nom_produit"]) && isset($_POST["prix_produit"])) {
         }
     </style>
 </head>
+<?php include("index-back.php"); ?>
 <body>
     <div class="container">
         <h1>Add Product</h1>
         <hr>
-        <a href="listproduit.php" class="btn btn-secondary mb-3">Back to List</a>
+        <div class="back-btn-container">
+    <a href="listproduit.php" class="btn btn-secondary mb-3 back-btn">Back to List</a>
+</div>
+
 
         <div class="alert alert-danger <?php if (!$error) echo 'd-none' ?>" role="alert">
             <?php echo $error; ?>
@@ -71,7 +84,7 @@ if (isset($_POST["nom_produit"]) && isset($_POST["prix_produit"])) {
                 <small class="form-text text-muted">Enter a float number (e.g. 1.99).</small>
             </div>
             <div class="text-center">
-            <button type="submit" class="btn btn-success mr-3" disabled id="save-btn">Save</button>
+            <button type="submit" class="btn btn-success">Save</button>
 
 <script>
     // get the form and save button elements
@@ -92,7 +105,6 @@ if (isset($_POST["nom_produit"]) && isset($_POST["prix_produit"])) {
             </div>
         </form>
     </div>
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

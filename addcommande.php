@@ -1,18 +1,22 @@
-
-
-
 <?php
 include '../Controller/CommandeC.php';
-include '../Controller/ProduitC.php';
-$com=new CommandeC();
-$prod=new ProduitC();
-$listproduit=$prod->listproduit();
-foreach($listproduit as $ser){
-    if($ser["id_produit"] == $_GET["nb_prod"]){
-        $commande= new $commande($ser['nb_prod'],$ser['date_passage_commande'],$ser['date_recue_commande'],$ser['id_p'],$ser['prix_tot=nb_prod*prix_produit']);
-        $com->addcommande($commande);
-        header('Location: listcommande.php');
-    }
+include '../Controller/Commande.php';
+$error = "";
+
+// create produit
+$commande = null;
+
+$commandeC= new CommandeC();
+if (isset($_POST["nb_prod"]) &&
+    isset($_POST["date_passage_commande"])&&
+    isset($_POST["date_recue_commande"])&&
+    isset($_POST["prix_tot"])
+    ){
+    $commande = new Commande($_POST["nb_prod"], $_POST["date_passage_commande"], $_POST["date_recue_commande"], $_POST["prix_tot"]);
+    $commandeC->addcommande($commande);
+    header('Location:listcommande.php');
+} else {
+    $error = "";
 }
 
 

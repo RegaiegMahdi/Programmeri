@@ -10,6 +10,7 @@ $list = $produitC->listproduit();
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+        
         * {
             box-sizing: border-box;
         }
@@ -66,13 +67,13 @@ $list = $produitC->listproduit();
             text-align: center;
         }
     </style>
+    
 </head>
+<?php include("index-back.php"); ?>
+
 <body>
 
-<!-- Header -->
-<div class="header">
-    <h1>Liste des produits</h1>
-</div>
+
 
 <!-- Add button -->
 <div style="text-align: center; margin-top: 20px;">
