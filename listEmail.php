@@ -1,39 +1,15 @@
-
 <?php
+var_dump($_POST);
 include "../Controller/ReclamationC.php";
 $ReclamationC = new ReclamationC();
-$list = $ReclamationC->listReclamation();
+$list = $ReclamationC->findReclamationById($Email);
+
 ?>
 <?php
 
-var_dump($_POST);
-// Include the controller and reponse class
-include '../Controller/reponseC.php';
-
-// Create an instance of the controller
-$reponseC = new reponseC();
-
-// Get all reponses
-$reponses = $reponseC->getReponses();
-
-?>
-
-<?php
-
-// Appel de la fonction pour récupérer les résultats de la jointure
-require_once '../config.php';
-require_once '../Model/reponses.php';
-
-$reponseC = new ReponseC(); // Create an instance of the CommentaireC class
-$results = $reponseC->joinTables();
-
-
-// Output the results
 
 
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -57,10 +33,6 @@ $results = $reponseC->joinTables();
                     </div>
                 </div>
                 <div class="sidebar">
-                <a href="#" class="active">
-                        <span class="material-icons-sharp"></span>
-                        <h3>Dashboard</h3>
-                    </a>
                     <a href="#" class="active">
                         <span class="material-icons-sharp">person</span>
                         <h3>Utilisateur</h3>
@@ -125,6 +97,7 @@ $results = $reponseC->joinTables();
 					<th><a class="toggle-add"><i class="edit-del-icon uil uil-book-medical"></i></a></th>
 				</tr>
 				<?php
+                
         foreach ($list as $Reclamation) 
         {
         ?>
@@ -152,98 +125,9 @@ $results = $reponseC->joinTables();
 		</div>
 		
 	</section>
-    <!DOCTYPE html>
-<html>
-<head>
-	<title>Reponse CRUD</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-	<h1>Reponse réclamation</h1>
-	<div class="container">
-		<h2>Ajouter Reponse</h2>
-		<form action="addReponse.php" method="POST">
-        <table border="1">
-		<tr>
-			<td><label for="contenu">Contenu:</label></td>
-			<td><textarea name="contenu" required></textarea></td>
-		</tr>
-		<tr>
-			<td><label for="statut">Statut:</label></td>
-			<td><input type="text" name="statut" required></td>
-		</tr>
-		<tr>
-			<td colspan="2"><input type="submit" value="Add Reponse"></td>
-		</tr>
-	</table>
-</form>
-	</div>
-    <h1>Liste de Reponses</h1>
-    <div class="container">
-        <?php if (count($reponses) > 0): ?>
-            <table>
-                <tr>
-                    <th>ID</th>
-                    <th>Contenu</th>
-                    <th>Statut</th>
-                    <th>Update</th>
-                    <th>Delete</th>
-                </tr>
-                <?php foreach ($reponses as $reponse): ?>
-                    <tr>
-                        <td><?= $reponse->getId_rep() ?></td>
-                        <td><?= $reponse->getContenu() ?></td>
-                        <td><?= $reponse->getStatut() ?></td>
-
-                        <td align="center">
-                            <form method="POST" action="updatereponse.php">
-                                <input type="hidden" name="id" value="<?= $reponse->getId_rep() ?>">
-                                <input type="submit" name="update" value="Update">
-                            </form>
-                        </td>
-
-                        <td>
-                            <a href="deletereponse.php?id=<?php echo $reponse->getId_rep(); ?>">Delete</a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </table>
-        <?php else: ?>
-            <p>No reponses found.</p>
-        <?php endif; ?>
-    </div>
-
-    <h1>Réclamation et Réponses</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>ID reclamation</th>
-                
-                <th>email</th>
-                <th>Sujet</th>
-                <th>message</th>
-                <th>statut</th>
-                <th>contenu reponse</th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php foreach ($results as $row): ?>
-        <tr>
-            <td><?= $row['Id_R'] ?></td>
-            <td><?= $row['Email'] ?></td>
-            <td><?= $row['Sujet_R'] ?></td>
-            <td><?= $row['Message_R'] ?></td>
-            <td><?= $row['Statut_R'] ?></td>
-            <td><?= $row['contenu'] ?></td>
-        </tr>
-    <?php endforeach; ?>
-    
     
 
-        </tbody>
-</body>
+
                 </right>
         </div>
         <script src="./back-office.js"></script>

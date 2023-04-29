@@ -65,13 +65,13 @@ class ReclamationC
         }
     }    
     
-    public function findReclamationById($id)
+    public function findReclamationById($Email)
     {
         try {
-
             $pdo = config::getConnexion();
-            $sql = "SELECT * FROM `Reclamation` WHERE Id_R=" . $id . "";
+            $sql = "SELECT * FROM `Reclamation` WHERE Email=:email";
             $query = $pdo->prepare($sql);
+            $query->bindParam(":email", $Email);
             $query->execute();
             $result = $query->fetch();
             return $result;
@@ -79,6 +79,7 @@ class ReclamationC
             echo "Pas de Reclamation: " . $e->getMessage();
         }
     }
+    
 
     public function updateReclamation($Reclamation, $id)
     {

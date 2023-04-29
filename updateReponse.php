@@ -24,7 +24,7 @@ if (
             $_POST['contenu'],
             $_POST['statut']
         );
-        $reponseC->updateReponse($commentaire, $_POST["id"]);
+        $reponseC->updateReponse($reponse, $_POST["id"]);
         header('Location:listReponse.php');
     } else {
         $error = "Missing information";
@@ -65,6 +65,14 @@ if (isset($_POST['id'])) {
 </label>
 </td>
 <td><input type="text" name="contenu" id="contenu" value="<?php echo isset($reponse['contenu']) ? $reponse['contenu'] : ''; ?>"></td>
+</tr>
+<tr>
+<tr>
+<td>
+<label for="statut">statut:
+</label>
+</td>
+<td><input type="text" name="statut" id="statut" value="<?php echo isset($reponse['statut']) ? $reponse['statut'] : ''; ?>"></td>
 </tr>
 <tr>
 

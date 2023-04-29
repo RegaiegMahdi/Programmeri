@@ -38,13 +38,13 @@ class ReponseC
     function addReponse($reponse)
     {
         $sql = "INSERT INTO reponses  
-        VALUES (NULL, :contenu, :statut)";
+        VALUES (NULL, :contenu, :statut,NULL)";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
             $query->execute([
                 'contenu' => $reponse->getContenu(),
-                'statut' => $reponse->getStatut(),
+                'statut' => $reponse->getStatut()
             ]);
         } catch (Exception $e) {
             echo 'Error: ' . $e->getMessage();
@@ -103,5 +103,52 @@ class ReponseC
         }
         return $reponses;
     }
+    
 
+
+
+
+    // Other functions here
+
+    function updateReclamationStatut()
+    {
+        $sql = "UPDATE reclamation
+                SET Statut_R = 'traité'
+                WHERE Statut_R = 'en attente'";
+        $db = config::getConnexion();
+        try {
+            $query = $db->prepare($sql);
+            $query->execute();
+            echo $query->rowCount() . " records UPDATED successfully <br>";
+        } catch (PDOException $e) {
+            echo 'Error: ' . $e->getMessage();
+        }
+    }
+
+    function joinTables()
+    {
+        // Connexion à la base de données
+        $db = config::getConnexion();
+        // Préparation de la requête SQL
+        $query = $db->prepare('SELECT reclamation.Id_R, reclamation.id_Client, reclamation.Email, reclamation.sujet_R, reclamation.Message_R,reclamation.Statut_R, reponses.contenu
+                               FROM reclamation
+                               INNER JOIN reponses ON reclamation.Id_R = reponses.id_rep');
+
+        // Exécution de la requête SQL
+        $query->execute();
+
+        // Récupération des résultats sous forme de tableau associatif
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        // Fermeture de la connexion à la base de données
+        $db = null;
+
+        // Retourne le tableau de résultats
+        return $results;
+    }
 }
+
+
+    
+
+

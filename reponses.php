@@ -4,12 +4,14 @@ class Reponse
     private ?int $id_rep = null;
     private ?string $contenu = null;
     private ?bool $statut = null;
+    private ?int $Id_R = null;
 
-    public function __construct($id_rep = null, $contenu, $statut)
+    public function __construct($id_rep = null, $contenu, $statut,$Id_R=null)
     {
         $this->id_rep = $id_rep;
         $this->contenu = $contenu;
         $this->statut = $statut;
+        $this->Id_R = $Id_R;
     }
 
     /**
@@ -18,6 +20,11 @@ class Reponse
     public function getId_Rep()
     {
         return $this->id_rep;
+    }
+
+    public function getId_R()
+    {
+        return $this->Id_R;
     }
 
     /**
