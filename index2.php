@@ -8,16 +8,16 @@
         <!--navbar icon-->
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <link rel="stylesheet" href="style2.css">
-        <script src="C:/xampp/htdocs/projet/view/script.js"></script>
+        <script src="C:\xampp\htdocs\scriptphp\projet\view\script.js"></script>
     </head>
     <body>
        <header class="header">
-        <a href="" class="logo"><img src="C:/xampp/htdocs/projet/image/logo.png" width="50px"></a>
+        <a href="" class="logo"><img src="..\image\logo.png" width="50px"></a>
         <nav class="navbar">
             <a href="#Home" style="--i:1;" class="active">Home</a>
             <a href="#About"style="--i:2;">About</a>
-            <a href="listReclamation.php"style="--i:3;">Réclamation</a>
-            <a href="#Compte"style="--i:4;">Compte</a>
+            <a href="#Contact"style="--i:3;">Contact</a>
+            <a href="index-back.php"style="--i:4;">Compte</a>
             
         </nav>
         <div class="bx bx-moon" id="dark-icon"></div>
@@ -59,7 +59,7 @@
             <div class="overlay"></div>
         </div>
         <div class="home-img">
-            <img src="C:/xampp/htdocs/projet/image/img2.png">
+            <img src="..\image\img2.png">
         </div>
     </section>
     <!--about section-->
@@ -74,16 +74,16 @@
                 <!--radio button end-->
                 <!--slides img start-->
                 <div class="slide first">
-                    <img src="C:\xampp\htdocs\projet\image\images-slide1.jpeg">
+                    <img src="C:\xampp\htdocs\scriptphp\projet\image\images-slide1.jpeg">
                 </div>
                 <div class="slide">
-                    <img src="C:\xampp\htdocs\projet\image\images-slide2.jpeg">
+                    <img src="C:\xampp\htdocs\scriptphp\projet\image\images-slide2.jpeg">
                 </div>
                 <div class="slide">
-                    <img src="C:\xampp\htdocs\projet\image\images-slide3.jpeg">
+                    <img src="C:\xampp\htdocs\scriptphp\projet\image\images-slide3.jpeg">
                 </div>
                 <div class="slide">
-                    <img src="C:\xampp\htdocs\projet\image\images-slide4.jpeg">
+                    <img src="C:\xampp\htdocs\scriptphp\projet\image\images-slide4.jpeg">
                 </div>
                 <!--slide img end-->
             </div>
