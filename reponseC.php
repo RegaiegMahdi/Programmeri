@@ -38,13 +38,15 @@ class ReponseC
     function addReponse($reponse)
     {
         $sql = "INSERT INTO reponses  
-        VALUES (NULL, :contenu, :statut,NULL)";
+        VALUES (NULL, :contenu, :statut,:Id_R)";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
             $query->execute([
                 'contenu' => $reponse->getContenu(),
-                'statut' => $reponse->getStatut()
+                'statut' => $reponse->getStatut(),
+                'Id_R' => $reponse->getId_R()
+
             ]);
         } catch (Exception $e) {
             echo 'Error: ' . $e->getMessage();
@@ -145,6 +147,37 @@ class ReponseC
 
         // Retourne le tableau de résultats
         return $results;
+    }
+    public function updateReclamation($id)
+    {
+        try {
+
+            $pdo = config::getConnexion();
+            $sql = "UPDATE `Reclamation` SET  `Statut_R`='Traité' WHERE Id_R=:idrr";
+            $query = $pdo->prepare($sql);
+            $query->execute([
+                
+                "idrr" => $id
+            ]);
+        } catch (PDOException $e) {
+            echo "Modification Echouer: " . $e->getMessage();
+        }
+    }
+
+    public function updateReclamation2($id)
+    {
+        try {
+
+            $pdo = config::getConnexion();
+            $sql = "UPDATE `Reclamation` SET  `Statut_R`='En_attente' WHERE Id_R=:idrr";
+            $query = $pdo->prepare($sql);
+            $query->execute([
+                
+                "idrr" => $id
+            ]);
+        } catch (PDOException $e) {
+            echo "Modification Echouer: " . $e->getMessage();
+        }
     }
 }
 

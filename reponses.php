@@ -6,7 +6,7 @@ class Reponse
     private ?bool $statut = null;
     private ?int $Id_R = null;
 
-    public function __construct($id_rep = null, $contenu, $statut,$Id_R=null)
+    public function __construct($id_rep = null, $contenu, $statut, $Id_R=null)
     {
         $this->id_rep = $id_rep;
         $this->contenu = $contenu;

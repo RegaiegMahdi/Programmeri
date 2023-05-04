@@ -15,8 +15,8 @@ $reponseC = new reponseC();
 
 // Get all reponses
 $reponses = $reponseC->getReponses();
-$reponses1 = $reponseC->listReponses();
-
+$reponseC = new ReponseC();
+$reponseC ->updateReclamation($_GET['Id_R']);
 ?>
 
 <?php
@@ -33,6 +33,8 @@ $results = $reponseC->joinTables();
 
 
 ?>
+
+
 
 
 <!DOCTYPE html>
@@ -112,12 +114,7 @@ $results = $reponseC->joinTables();
                         </div>
                     </div>
                 </div>
-                <div class="row">
-				
-                <a href="pdf.php" class="btn btn-success pull-right"><span class="glyphicon glyphicon-print"></span>Télécharger PDF</a>
-
-			</div>
-                <section class="List">
+                <!--<section class="List">
 		<div class="Tablelist">
 			<table class="tableview">
 				<tr class="TitleTab">
@@ -127,8 +124,6 @@ $results = $reponseC->joinTables();
 					<th class="styleth">Sujet de la réclamation</th>
 					<th class="styleth">Message de la réclamation</th>
 					<th class="styleth">statut de la reclamation</th>
-                    <th class="styleth">Répondre au réclamation</th>
-                    <th class="styleth">supprimer</th>
 					<th><a class="toggle-edit"><i class="edit-del-icon uil uil-edit"></i></a></th>
 					<th><a class="toggle-add"><i class="edit-del-icon uil uil-book-medical"></i></a></th>
 				</tr>
@@ -143,17 +138,14 @@ $results = $reponseC->joinTables();
                         <td class="styleth"><?= $Reclamation['Sujet_R']; ?></td>
                         <td class="styleth"><?= $Reclamation['Message_R']; ?></td>
                         <td class="styleth"><?= $Reclamation['Statut_R']; ?></td>
-						<!--<td>
+						<td>
 							
-							<form method="POST" action="updateReclamation.php">
+							<!--<form method="POST" action="updateReclamation.php">
 							<a href="updateReclamation.php?Id_L="><i class="edit-del-icon uil uil-edit"></i></a>
 							</form>
-						</td>-->
-                        <td>
-                         <a href="repondre.php?Id_R=<?php echo $Reclamation['Id_R']; ?>"><span>Repondre</span> </a>
-                        </td>
+						</td>
 						<td>
-							<a href="deleteReclamation.php?Id_R=<?php echo $Reclamation['Id_R']; ?>">Delete</a>
+							<a href="deleteReclamation.php?Id_L=<?php echo $Reclamation['Id_R']; ?>"><i class="edit-del-icon uil uil-trash-alt"></i></a>
 						</td>
 					</tr>
                     <?php
@@ -162,7 +154,7 @@ $results = $reponseC->joinTables();
 			</table>
 		</div>
 		
-	</section>
+	</section> -->
     <!DOCTYPE html>
 <html>
 <head>
@@ -172,7 +164,7 @@ $results = $reponseC->joinTables();
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	<!--<h1>Reponse réclamation</h1>
+	<h1>Reponse réclamation</h1>
 	<div class="container">
 		<h2>Ajouter Reponse</h2>
 		<form action="addReponse.php" method="POST">
@@ -185,14 +177,17 @@ $results = $reponseC->joinTables();
 			<td><label for="statut">Statut:</label></td>
 			<td><input type="text" name="statut" required></td>
 		</tr>
+        <tr>
+			<td><label for="Id_R">Id_R:</label></td>
+			<td><input type="text" name="Id_R" required></td>
+		</tr>
 		<tr>
 			<td colspan="2"><input type="submit" value="Add Reponse"></td>
 		</tr>
 	</table>
 </form>
-	</div>-->
-  
-    <h1>Liste de Reponses</h1>
+	</div>
+   <!-- <h1>Liste de Reponses</h1>
     <div class="container">
         <?php if (count($reponses) > 0): ?>
             <table>
@@ -200,7 +195,6 @@ $results = $reponseC->joinTables();
                     <th>ID</th>
                     <th>Contenu</th>
                     <th>Statut</th>
-                    <th>Id_R</th>
                     <th>Update</th>
                     <th>Delete</th>
                 </tr>
@@ -209,7 +203,6 @@ $results = $reponseC->joinTables();
                         <td><?= $reponse->getId_rep() ?></td>
                         <td><?= $reponse->getContenu() ?></td>
                         <td><?= $reponse->getStatut() ?></td>
-                        <td><?= $reponse->getId_R() ?></td>
 
                         <td align="center">
                             <form method="POST" action="updatereponse.php">
@@ -219,7 +212,7 @@ $results = $reponseC->joinTables();
                         </td>
 
                         <td>
-                            <a href="deletereponse.php?id=<?php echo $reponse->getId_rep(); ?>&Id_R=2350">Delete</a>
+                            <a href="deletereponse.php?id=<?php echo $reponse->getId_rep(); ?>">Delete</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -229,11 +222,12 @@ $results = $reponseC->joinTables();
         <?php endif; ?>
     </div>
 
-    <!--<h1>Réclamation et Réponses</h1>
+   <h1>Réclamation et Réponses</h1>
     <table>
         <thead>
             <tr>
                 <th>ID reclamation</th>
+                
                 <th>email</th>
                 <th>Sujet</th>
                 <th>message</th>
@@ -255,10 +249,10 @@ $results = $reponseC->joinTables();
     
     
 
-        </tbody>-->
+        </tbody>
 </body>
                 </right>
-        </div>
+        </div> -->
         <script src="./back-office.js"></script>
     </body>
 </html>

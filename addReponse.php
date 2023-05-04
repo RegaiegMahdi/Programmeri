@@ -20,7 +20,8 @@ if (
         $reponse = new Reponse(
             null,
             $_POST['contenu'],
-            $_POST['statut']
+            $_POST['statut'],
+            $_POST['Id_R']
         );
         
         // add the reponse
