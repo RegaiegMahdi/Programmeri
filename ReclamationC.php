@@ -29,11 +29,11 @@ class ReclamationC
             
             
             $pdo = config::getConnexion();
-            $sql = "INSERT INTO `Reclamation`(`Id_R`, `id_Client`, `Email`, `Sujet_R`, `Message_R`, `Statut_R`) 
-            VALUES (:idR, :idc, :email, :sujetr, :msg, :statutr)";
+            $sql = "INSERT INTO Reclamation
+            VALUES (NULL, :idc, :email, :sujetr, :msg, :statutr)";
             $query = $pdo->prepare($sql);
             $query->execute([
-                "idR" => $Reclamation->getIdReclamation(),
+                
                 "idc" => $Reclamation->getIdClient(),
                 "email" => $Reclamation->getEmail(),
                 "sujetr" => $Reclamation->getSujetReclamation(),
@@ -48,7 +48,7 @@ class ReclamationC
 
     public function deleteReclamation(int $id)
     {
-        $sql = "DELETE FROM reclamation WHERE id = :id";
+        $sql = "DELETE FROM reclamation WHERE id_R = :id";
         $db = config::getConnexion();
         $req = $db->prepare($sql);
         $req->bindValue(':id', $id);
@@ -65,13 +65,13 @@ class ReclamationC
         }
     }    
     
-    public function findReclamationById($id)
+    public function findReclamationById($Email)
     {
         try {
-
             $pdo = config::getConnexion();
-            $sql = "SELECT * FROM `Reclamation` WHERE Id_R=" . $id . "";
+            $sql = "SELECT * FROM `Reclamation` WHERE Email=:email";
             $query = $pdo->prepare($sql);
+            $query->bindParam(":email", $Email);
             $query->execute();
             $result = $query->fetch();
             return $result;
@@ -79,6 +79,7 @@ class ReclamationC
             echo "Pas de Reclamation: " . $e->getMessage();
         }
     }
+    
 
     public function updateReclamation($Reclamation, $id)
     {

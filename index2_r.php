@@ -14,10 +14,10 @@
        <header class="header">
         <a href="" class="logo"><img src="..\image\logo.png" width="50px"></a>
         <nav class="navbar">
-            <a href="index2.php" style="--i:1;" class="active">Home</a>
+        <a href="index2.php" style="--i:1;" class="active">Home</a>
             <a href="#About"style="--i:2;">About</a>
             <a href="#Contact"style="--i:3;">Contact</a>
-            <a href="profile.php?id=<?= $_GET['id']; ?>"style="--i:4;">Compte</a>
+            <a href="profile.php"style="--i:4;">Compte</a>
             <a href="listReclamation.php"style="--i:3;">Réclamation</a>
             <a href="listCours.php"style="--i:4;">Cours</a>
             <a href="gestionreservation.php"style="--i:4;">Reservation</a>
@@ -36,7 +36,6 @@
           <h3>SWEAT SOCIETY</h3>
           <h1>sweat today,succed tomorrow</h1>
           <p>Sweat Society est une salle de sport moderne et dynamique qui offre une expérience d'entraînement de première classe. </p>
-          <?= $_GET['id']; ?>
         <div class="social-media">
             <a href="#"><i class='bx bxl-facebook'></i></a>
             <a href="#"><i class='bx bxl-instagram-alt'></i></a>

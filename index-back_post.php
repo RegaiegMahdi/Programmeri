@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -13,7 +14,7 @@
             <aside>
                 <div class="top">
                     <div class="logo">
-                        <img src="..\image\logo.png">
+                        <img src="C:\xampp\htdocs\scriptphp\projet\image\logo.png">
                         <h2>SW<span class="title">EAT</span> SOCIETY</h2>
                     </div>
                     <div class="close" id="close-btn">
@@ -25,7 +26,7 @@
                         <span class="material-icons-sharp">book_online</span>
                         <h3>Dashboard</h3>
                     </a>
-                    <a href="afficheruser.php" class="active">
+                <a href="afficheruser.php" class="active">
                         <span class="material-icons-sharp">person</span>
                         <h3>Utilisateur</h3>
                     </a>
@@ -33,7 +34,7 @@
                         <span class="material-icons-sharp">chat</span>
                         <h3>Reclamation</h3>
                     </a>
-                    
+                  
                     <a href="listproduit.php"class="active">
                          <span class="material-icons-sharp"> production_quantity_limits  </span>
                          <h3>Produit</h3>
@@ -72,8 +73,28 @@
                             <span class="material-icons-sharp" >dark_mode</span>
                         </div>
                     </div>
-                </div>
-                </right>
+         </div>
+  <div class="wrapper">
+  <form action="add_post.php">
+    <button>Ajouter Post</button>
+</form>
+<form action="ListPost-back.php">
+    <button>Modifier ou Supprimer des Posts</button>
+</form>
+
+	</div>
+</div>
+<?php
+
+?>
+
+
+
+
+
+        
+
+   </right>
         </div>
         <script src="./back-office.js"></script>
     </body>

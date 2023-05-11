@@ -1,0 +1,87 @@
+<?php
+
+include '../config.php';
+	function generateRow(){
+		$contents = '';
+		$sql="SELECT * FROM cours";
+		$db = config::getConnexion();
+	
+		$list = $db->query($sql);
+	
+		while($row = $list->fetch(PDO::FETCH_ASSOC)){
+			$contents .= "
+			<tr>
+				<td>".$row['id_Client']."</td>
+				<td>".$row['num_salle']."</td>
+				<td>".$row['nom_coach']."</td>
+				<td>".$row['typee']."</td>
+			</tr>
+			";
+			
+		}
+		
+		
+		
+
+		return $contents;
+	}
+	
+
+	require_once('tcpdf/tcpdf.php');
+    $pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+	
+    $pdf->SetCreator(PDF_CREATOR);
+    $pdf->SetTitle("Generated PDF using TCPDF");
+	
+    $pdf->setHeaderData('tcpdf/logo.jpg',100, 'Sweat Society', 'Tableau des Cours ' , array(100,100,100), array(255,255,255));
+	
+    $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+    $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+	$pdf->Line(10, 70, 200, 70, array('width' => 0.5, 'color' => array(0,0,0)));
+    $pdf->SetDefaultMonospacedFont('helvetica');
+    $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+	
+ $pdf->SetMargins(20, 20, 20, true);
+ $pdf->setPrintHeader(true);
+ $pdf->setPrintFooter(true);
+
+    $pdf->SetAutoPageBreak(TRUE, 10);
+	$pdf->SetFont('times', 'BI', 20);
+    $pdf->AddPage();
+	
+	
+
+	
+	
+    $content = '';
+    $content .= '
+
+	
+	
+	
+	
+		   
+      	<h4></h4>
+      	<table border="1" cellspacing="0" cellpadding="3">
+           <tr>
+        <th width="20%">id Client</th>
+				
+				<th width="30%">numSalle</th>
+				<th width="30%">nomCoach</th>
+				<th width="30%">type</th>
+		
+				
+           </tr>
+		  
+      ';
+	  ob_clean();
+    $content .= generateRow();
+    $content .= '</table>';
+    $pdf->writeHTML($content);
+    $pdf->Output('cours.pdf', 'I');
+	ob_clean();
+	
+
+
+
+?>

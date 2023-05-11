@@ -1,3 +1,15 @@
+<?php
+var_dump($_POST);
+include "../Controller/ReclamationC.php";
+$ReclamationC = new ReclamationC();
+$list = $ReclamationC->findReclamationById($Email);
+
+?>
+<?php
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -13,7 +25,7 @@
             <aside>
                 <div class="top">
                     <div class="logo">
-                        <img src="..\image\logo.png">
+                        <img src="logo.png">
                         <h2>SW<span class="title">EAT</span> SOCIETY</h2>
                     </div>
                     <div class="close" id="close-btn">
@@ -21,43 +33,41 @@
                     </div>
                 </div>
                 <div class="sidebar">
-                <a href="afficheruser.php" class="active">
-                        <span class="material-icons-sharp">book_online</span>
-                        <h3>Dashboard</h3>
-                    </a>
-                    <a href="afficheruser.php" class="active">
+                    <a href="#" class="active">
                         <span class="material-icons-sharp">person</span>
                         <h3>Utilisateur</h3>
                     </a>
-                    <a href="index-back-rec.php" class="active">
+                    <a href="#" class="active">
                         <span class="material-icons-sharp">chat</span>
                         <h3>Reclamation</h3>
                     </a>
-                    
-                    <a href="listproduit.php"class="active">
+                    <a href="#"class="active">
+                        <span class="material-icons-sharp">rate_review</span>
+                        <h3>Reponse</h3>
+                    </a>
+                    <a href="#"class="active">
                          <span class="material-icons-sharp"> production_quantity_limits  </span>
                          <h3>Produit</h3>
                     </a>
-                   
-                    <a href="index-back_post.php"class="active">
+                    <a href="#"class="active">
+                        <span class="material-icons-sharp">list_alt</span>
+                        <h3>Commande</h3>
+                    </a>
+                    <a href="#"class="active">
                         <span class="material-icons-sharp">pages</span>
                         <h3>Post</h3>
                     </a>
-                    <a href="listCommentaire.php"class="active">
+                    <a href="#"class="active">
                         <span class="material-icons-sharp">comment</span>
                         <h3>Commentaire</h3>
                     </a>
-                    <a href="index-back_cour.php"class="active">
+                    <a href="#"class="active">
                         <span class="material-icons-sharp">fitness_center</span>
                         <h3>Cours</h3>
                     </a>
-                    <a href="listeReservation.php"class="active">
+                    <a href="#"class="active">
                         <span class="material-icons-sharp">book_online</span>
                         <h3>Reservation</h3>
-                    </a>
-                    <a href="login.php"class="active">
-                        <span class="material-icons-sharp">book_online</span>
-                        <h3>LOG OUT</h3>
                     </a>
                 </div>
             </aside>
@@ -73,6 +83,51 @@
                         </div>
                     </div>
                 </div>
+                <section class="List">
+		<div class="Tablelist">
+			<table class="tableview">
+				<tr class="TitleTab">
+					<th class="styleth">Id Reclamation</th>
+					<th class="styleth">Id Client</th>
+					<th class="styleth">Email client</th>
+					<th class="styleth">Sujet de la réclamation</th>
+					<th class="styleth">Message de la réclamation</th>
+					<th class="styleth">statut de la reclamation</th>
+					<th><a class="toggle-edit"><i class="edit-del-icon uil uil-edit"></i></a></th>
+					<th><a class="toggle-add"><i class="edit-del-icon uil uil-book-medical"></i></a></th>
+				</tr>
+				<?php
+                
+        foreach ($list as $Reclamation) 
+        {
+        ?>
+					<tr>
+                        <td class="styleth"><?= $Reclamation['Id_R']; ?></td>
+                        <td class="styleth"><?= $Reclamation['id_Client']; ?></td>
+                        <td class="styleth"><?= $Reclamation['Email']; ?></td>
+                        <td class="styleth"><?= $Reclamation['Sujet_R']; ?></td>
+                        <td class="styleth"><?= $Reclamation['Message_R']; ?></td>
+                        <td class="styleth"><?= $Reclamation['Statut_R']; ?></td>
+						<td>
+							
+							<!--<form method="POST" action="updateReclamation.php">
+							<a href="updateReclamation.php?Id_L="><i class="edit-del-icon uil uil-edit"></i></a>
+							</form>-->
+						</td>
+						<td>
+							<a href="deleteReclamation.php?Id_L=<?php echo $Reclamation['Id_R']; ?>"><i class="edit-del-icon uil uil-trash-alt"></i></a>
+						</td>
+					</tr>
+                    <?php
+        }
+        ?>	
+			</table>
+		</div>
+		
+	</section>
+    
+
+
                 </right>
         </div>
         <script src="./back-office.js"></script>

@@ -1,3 +1,19 @@
+<?php
+
+
+
+var_dump($_POST);
+// Include the controller and prost class
+include '../Controller/postC.php';
+
+// Create an instance of the controller
+$postC = new postC();
+
+// Get all products
+$posts = $postC->getPost();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -6,14 +22,14 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <title>SWEAT SOCIETY</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
-        <link rel="stylesheet" href="style_back.css">
+        <link rel="stylesheet" href="style_back_listPost.css">
     </head>
     <body>
         <div class="container">
             <aside>
                 <div class="top">
                     <div class="logo">
-                        <img src="..\image\logo.png">
+                        <img src="C:\xampp\htdocs\scriptphp\projet\image\logo.png">
                         <h2>SW<span class="title">EAT</span> SOCIETY</h2>
                     </div>
                     <div class="close" id="close-btn">
@@ -21,43 +37,41 @@
                     </div>
                 </div>
                 <div class="sidebar">
-                <a href="afficheruser.php" class="active">
-                        <span class="material-icons-sharp">book_online</span>
-                        <h3>Dashboard</h3>
-                    </a>
-                    <a href="afficheruser.php" class="active">
+                    <a href="#" class="active">
                         <span class="material-icons-sharp">person</span>
                         <h3>Utilisateur</h3>
                     </a>
-                    <a href="index-back-rec.php" class="active">
+                    <a href="#" class="active">
                         <span class="material-icons-sharp">chat</span>
                         <h3>Reclamation</h3>
                     </a>
-                    
-                    <a href="listproduit.php"class="active">
+                    <a href="#"class="active">
+                        <span class="material-icons-sharp">rate_review</span>
+                        <h3>Reponse</h3>
+                    </a>
+                    <a href="#"class="active">
                          <span class="material-icons-sharp"> production_quantity_limits  </span>
                          <h3>Produit</h3>
                     </a>
-                   
-                    <a href="index-back_post.php"class="active">
+                    <a href="#"class="active">
+                        <span class="material-icons-sharp">list_alt</span>
+                        <h3>Commande</h3>
+                    </a>
+                    <a href="#"class="active">
                         <span class="material-icons-sharp">pages</span>
                         <h3>Post</h3>
                     </a>
-                    <a href="listCommentaire.php"class="active">
+                    <a href="#"class="active">
                         <span class="material-icons-sharp">comment</span>
                         <h3>Commentaire</h3>
                     </a>
-                    <a href="index-back_cour.php"class="active">
+                    <a href="#"class="active">
                         <span class="material-icons-sharp">fitness_center</span>
                         <h3>Cours</h3>
                     </a>
-                    <a href="listeReservation.php"class="active">
+                    <a href="#"class="active">
                         <span class="material-icons-sharp">book_online</span>
                         <h3>Reservation</h3>
-                    </a>
-                    <a href="login.php"class="active">
-                        <span class="material-icons-sharp">book_online</span>
-                        <h3>LOG OUT</h3>
                     </a>
                 </div>
             </aside>
@@ -72,9 +86,39 @@
                             <span class="material-icons-sharp" >dark_mode</span>
                         </div>
                     </div>
-                </div>
-                </right>
+         </div>
+
+         <section id="blog">
+    <?php if (count($posts) > 0): ?>
+        <div class="blog-heading">
+            <span>Recent Posts</span>
+            <h3>Our blog</h3>
         </div>
+
+        <div class="blog-container">
+            <?php foreach ($posts as $post): ?>
+                <div class="blog-box">
+                    <!--img-->
+                    <div class="blog-img">
+                        <td><img class="product-image" src="uploads/<?= basename($post->getImage()) ?>" alt="<?= $post->getId() ?>">
+                    </div>
+                    <!--text-->
+                    <div class="blog-text">
+                        <span><?= $post->getSujet() ?></span>
+                        <p><?= $post->getContenu() ?></p>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+</section>
+
+  
+</div>
+
         <script src="./back-office.js"></script>
     </body>
+
 </html>
+   
+        
